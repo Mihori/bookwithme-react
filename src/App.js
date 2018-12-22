@@ -5,8 +5,11 @@ import * as redux from 'redux';
 import { Provider } from 'react-redux';
 
 import { Header } from './shared/Header';
-import { RentalList } from './components/rental/RentalList';
+import RentalList from './components/rental/RentalList';
 import { RentalDetail } from './components/rental/RentalDetail';
+
+import { init } from './reducers'; 
+
 import './App.css';
 
 class App extends Component {
