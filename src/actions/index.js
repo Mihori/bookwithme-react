@@ -1,4 +1,4 @@
-import { FETCH_RENTALS, FETCH_RENTAL_BY_ID } from "./types";
+import { FETCH_RENTALS, FETCH_RENTAL_BY_ID, RESET_RENTAL, RENDER_RENTAL } from "./types";
 
 const rentals = [{
   id: 1,
@@ -53,6 +53,19 @@ const rentals = [{
   createdAt: "24/12/2017"
 }];
 
+const resetRentals = () => {
+  return {
+    type: RESET_RENTAL
+  }
+}
+
+const renderRental = (rental) => {
+  return {
+    type: RENDER_RENTAL,
+    rental
+  }
+}
+
 export const fetchRentals = () => {
   return {
     type: FETCH_RENTALS,
@@ -61,10 +74,13 @@ export const fetchRentals = () => {
 }
 
 export const fetchRentalById = (rentalId) => {
-  const rental = rentals.find(rental => rental.id.toString() === rentalId);
+  
+  return function(dispatch) {
+    dispatch(resetRentals());
 
-  return {
-    type: FETCH_RENTAL_BY_ID,
-    rental
+    setTimeout(() => {
+      const rental = rentals.find(rental => rental.id.toString() === rentalId);
+      dispatch(renderRental(rental));
+    } ,1000);
   }
 }
