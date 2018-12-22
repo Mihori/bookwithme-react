@@ -61,7 +61,7 @@ export const fetchRentals = () => {
 }
 
 export const fetchRentalById = (rentalId) => {
-  const rental = rentals.map(rental => rental.id.toString() === rentalId)
+  const rental = rentals.find(rental => rental.id.toString() === rentalId);
 
   return {
     type: FETCH_RENTAL_BY_ID,

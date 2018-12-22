@@ -10,14 +10,22 @@ export class RentalDetail extends React.Component {
   }
 
   render() {
+    const rental = this.props.rental;
+
     return(
-      <p>RentalDetailComponent</p>
+      <div>
+        <p>{rental.title}</p>
+        <p>{rental.city}</p>
+        <p>{rental.description}</p>
+        <p>{rental.dailyRate}</p>
+      </div>
       )
     }
 }
 
 function mapStateToProps(state) {  
   return {
+    rental: state.rental.data
   }
 }
 
