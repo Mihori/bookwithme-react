@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { Header } from './shared/Header';
 import { RentalList } from './components/rental/RentalList';
 import { RentalDetail } from './components/rental/RentalDetail';
@@ -13,6 +13,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <div className="container">
+          <Route exact path="/" render={() => { return <Redirect to="/rentals" /> }} />
           <Route exact path="/rentals" component={RentalList} />
           <Route exact path="/rentals/:id" component={RentalDetail} />
         </div>
