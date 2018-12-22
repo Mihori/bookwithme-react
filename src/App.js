@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Header } from './shared/Header';
+import { RentalList } from './components/rental/RentalList';
 import './App.css';
-import { RentalCard } from './components/rental/RentalCard';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <RentalCard />
+        <div className="container">
+          <RentalList />
+        </div>
       </div>
     );
   }
