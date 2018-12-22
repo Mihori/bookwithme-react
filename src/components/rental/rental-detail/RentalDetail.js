@@ -12,6 +12,7 @@ export class RentalDetail extends React.Component {
   render() {
     const rental = this.props.rental;
 
+    if (rental.id) {
     return(
       <div>
         <p>{rental.title}</p>
@@ -20,7 +21,10 @@ export class RentalDetail extends React.Component {
         <p>{rental.dailyRate}</p>
       </div>
       )
+    } else {
+      return <h1>Loading...</h1>
     }
+  }
 }
 
 function mapStateToProps(state) {  
