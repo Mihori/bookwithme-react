@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 export const rentalReducer = (state = INITIAL_STATE.rentals, action) => {
   switch(action.type) {
     case RENDER_RENTALS:    
-      return { ...state, data: action.rentals.data };
+      return { ...state, data: action.rentals };
     default:
       return state;
   }

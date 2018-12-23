@@ -25,7 +25,7 @@ const renderRentals = (rentals) => {
 export const getRentals = () => {
   return dispatch => {
     axios.get('http://localhost:3001/api/v1/rentals').then((rentals) => {
-      dispatch(renderRentals(rentals)); 
+      dispatch(renderRentals(rentals.data)); 
     });
   }
 }
