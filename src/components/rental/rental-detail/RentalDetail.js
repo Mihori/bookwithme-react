@@ -24,7 +24,7 @@ export class RentalDetail extends React.Component {
             </div>
             <div className="col-md-6">
               <MapWithAMarker
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjT6y1x_AYDFISVD6th6AxY90P1CFnw2E&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `360px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
