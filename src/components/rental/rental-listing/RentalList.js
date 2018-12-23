@@ -14,7 +14,7 @@ export class RentalList extends React.Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(actions.fetchRentals());
+    this.props.dispatch(actions.getRentals());
   }
 
   render() {

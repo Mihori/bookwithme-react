@@ -1,4 +1,4 @@
-import { FETCH_RENTALS, FETCH_RENTAL_BY_ID, RESET_RENTAL, RENDER_RENTAL } from "./types";
+import { GET_RENTALS, RESET_RENTAL, RENDER_RENTAL } from "./types";
 
 const rentals = [{
   id: 1,
@@ -66,14 +66,14 @@ const renderRental = (rental) => {
   }
 }
 
-export const fetchRentals = () => {
+export const getRentals = () => {
   return {
-    type: FETCH_RENTALS,
+    type: GET_RENTALS,
     rentals 
   }
 }
 
-export const fetchRentalById = (rentalId) => {
+export const getRentalById = (rentalId) => {
   
   return function(dispatch) {
     dispatch(resetRentals());

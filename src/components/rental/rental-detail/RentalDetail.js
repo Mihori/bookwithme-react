@@ -6,7 +6,7 @@ export class RentalDetail extends React.Component {
 
   componentWillMount() {
     const rentalId = this.props.match.params.id;
-    this.props.dispatch(actions.fetchRentalById(rentalId));
+    this.props.dispatch(actions.getRentalById(rentalId));
   }
 
   render() {
