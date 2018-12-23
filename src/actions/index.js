@@ -1,4 +1,7 @@
+import axios from 'axios';
+
 import { GET_RENTALS, RESET_RENTAL, RENDER_RENTAL } from "./types";
+
 
 const rentals = [{
   id: 1,
@@ -78,9 +81,8 @@ export const getRentalById = (rentalId) => {
   return function(dispatch) {
     dispatch(resetRentals());
 
-    setTimeout(() => {
-      const rental = rentals.find(rental => rental.id.toString() === rentalId);
-      dispatch(renderRental(rental));
-    } ,1000);
+    axios.get(`http://localhost:3001/api/v1/rentals/${rentalId}`).then((rental) => {
+     dispatch(renderRental(rental));
+    });
   }
 }
