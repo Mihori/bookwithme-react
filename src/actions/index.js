@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_RENTALS, RESET_RENTAL, RENDER_RENTAL } from "./types";
+import { GET_RENTALS, RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS } from "./types";
 
 
 const rentals = [{
@@ -69,13 +69,17 @@ const renderRental = (rental) => {
   }
 }
 
+const renderRentals = (rentals) => {
+  return {
+    type: RENDER_RENTALS,
+    rentals
+  }
+}
+
 export const getRentals = () => {
   return dispatch => {
     axios.get('http://localhost:3001/api/v1/rentals').then((rentals) => {
-      dispatch({
-        type: GET_RENTALS,
-        rentals 
-      }); 
+      dispatch(renderRentals(rentals)); 
     });
   }
 }
