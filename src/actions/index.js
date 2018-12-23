@@ -70,9 +70,13 @@ const renderRental = (rental) => {
 }
 
 export const getRentals = () => {
-  return {
-    type: GET_RENTALS,
-    rentals 
+  return dispatch => {
+    axios.get('http://localhost:3001/api/v1/rentals').then((rentals) => {
+      dispatch({
+        type: GET_RENTALS,
+        rentals 
+      }); 
+    });
   }
 }
 
