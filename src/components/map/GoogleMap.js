@@ -6,6 +6,7 @@ import {
   GoogleMap,
   Circle,
 } from "react-google-maps";
+import { reject } from 'q';
 
 const MapComponent = props => {
   const { coordinates } = props;
@@ -42,15 +43,10 @@ const withGeoCode = WrappedComponent => (
       this.getGeocodedLocation();
     }
 
-    getGeocodedLocation() {
-      const location = this.props.location;
+    geocodeLocation(location) {
       const geocoder = new window.google.maps.Geocoder();
 
-      if (this.cacher.isValueCached(location)) {
-        this.setState({
-          coordinates: this.caches.getCachedValue(location)
-        });    
-      } else {
+      return new Promise((resolve, reject) => {
         geocoder.geocode({address: location}, (result, status) => {
           if (status === 'OK') {
             const geometry = result[0].geometry.location;
@@ -58,11 +54,33 @@ const withGeoCode = WrappedComponent => (
             
             this.cacher.cacheValue(location, coordinates);
 
+            resolve(coordinates);
+          } else {
+            reject('ERROR!');
+          }
+        });
+      });
+
+    }
+
+    getGeocodedLocation() {
+      const location = this.props.location;
+
+      if (this.cacher.isValueCached(location)) {
+        this.setState({
+          coordinates: this.caches.getCachedValue(location)
+        });    
+      } else {
+        this.geocodeLocation(location).then(
+          (coordinates) => {
             this.setState({
               coordinates
             });
+          },
+          (error) => {
+            console.log(error);
           }
-        });
+        );
       }
 
     }
