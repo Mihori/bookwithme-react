@@ -1,7 +1,5 @@
 import React from 'react';
 import { RentalCard } from './RentalCard';
-import { connect } from 'react-redux';
-import * as actions from 'actions';
 
 export class RentalList extends React.Component {
 
@@ -10,30 +8,14 @@ export class RentalList extends React.Component {
       return (
         <RentalCard rental={rental} key={index}/>
       )
-    })
-  }
-
-  componentWillMount() {
-    this.props.dispatch(actions.getRentals());
+    });
   }
 
   render() {
     return (
-      <section id="rentalListing">
-        <h1 className="page-title">Your Home All Around the World</h1>
         <div className="row">
           {this.renderRentals()}
         </div>
-      </section>
-
     )
   }
 }
-
-function mapStateToProps(state) {  
-  return {
-    rentals: state.rentals.data
-  }
-}
-
-export default connect(mapStateToProps)(RentalList);
