@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 const FakeDb = require('./fake-db');
 const path = require('path');
+const cors = require('cors');
 
 const rentalRoutes = require('./routes/rentals'),
       userRoutes = require('./routes/users'),
@@ -20,7 +21,8 @@ mongoose.set('useCreateIndex', true);
 
 const app = express();
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/api/v1/rentals', rentalRoutes);
 app.use('/api/v1/users', userRoutes);
