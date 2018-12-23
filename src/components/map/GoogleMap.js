@@ -6,16 +6,21 @@ import {
   Marker,
 } from "react-google-maps";
 
-const MapComponent = props => (
+const MapComponent = props => {
+  const { coordinates } = props;
+
+  return (
     <GoogleMap
       defaultZoom={8}
-      defaultCenter={{ lat: -34.397, lng: 150.644 }}
+      defaultCenter={coordinates}
+      center={coordinates}
     >
       <Marker
-        position={{ lat: -34.397, lng: 150.644 }}
+        position={coordinates}
       />
     </GoogleMap>
   )
+}
 
 const withGeoCode = WrappedComponent => (
   class extends React.Component {
@@ -36,9 +41,9 @@ const withGeoCode = WrappedComponent => (
 
     geoCodeLocation() {
       const location = this.props.location;
-      const geoCoder = new window.google.maps.GeoCoder();
+      const geocoder = new window.google.maps.Geocoder();
 
-      geoCoder.geocode({address: location}, (result, status) => {
+      geocoder.geocode({address: location}, (result, status) => {
         if (status === 'OK') {
           const geometry = result[0].geometry.location;
           const coordinates = { lat: geometry.lat(), lng: geometry.lng() };
