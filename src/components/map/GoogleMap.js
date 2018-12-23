@@ -17,4 +17,14 @@ const MapComponent = props => (
     </GoogleMap>
   )
 
-export const MapWithAMarker = withScriptjs(withGoogleMap(MapComponent));
+const withGeoCode = WrappedComponent => (
+  class extends React.Component {
+    render() {
+      return (
+        <WrappedComponent />
+      )
+    }
+  }
+)
+
+export const MapWithGeoCode = withScriptjs(withGoogleMap(withGeoCode(MapComponent)));
