@@ -36,7 +36,7 @@ export const getRentalById = (rentalId) => {
     dispatch(resetRentals());
 
     axios.get(`http://localhost:3001/api/v1/rentals/${rentalId}`).then((rental) => {
-     dispatch(renderRental(rental));
+     dispatch(renderRental(rental.data));
     });
   }
 }
