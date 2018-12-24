@@ -6,25 +6,12 @@ const RegisterForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>First Name</label>
+        <label>Username</label>
         <div>
           <Field
-            name="firstName"
+            name="username"
             component="input"
             type="text"
-            placeholder="First Name"
-            className="form-control"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <div>
-          <Field
-            name="lastName"
-            component="input"
-            type="text"
-            placeholder="Last Name"
             className="form-control"
           />
         </div>
@@ -36,17 +23,35 @@ const RegisterForm = props => {
             name="email"
             component="input"
             type="email"
-            placeholder="Email"
             className="form-control"
           />
         </div>
       </div>
       <div>
-        <button className="btn btn-success" type="submit" disabled={pristine || submitting}>
+        <label>Password</label>
+        <div>
+          <Field
+            name="password"
+            component="input"
+            type="password"
+            className="form-control"
+          />
+        </div>
+      </div>
+      <div>
+        <label>Confirmation Password</label>
+        <div>
+          <Field
+            name="password"
+            component="input"
+            type="password"
+            className="form-control"
+          />
+        </div>
+      </div>
+      <div>
+        <button className="btn btn-bwm" type="submit" disabled={pristine || submitting}>
           Submit
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
         </button>
       </div>
     </form>
