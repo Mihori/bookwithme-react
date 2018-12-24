@@ -8,6 +8,7 @@ import RentalListing from 'components/rental/rental-listing/RentalListing';
 import RentalDetail from 'components/rental/rental-detail/RentalDetail';
 
 import './App.css';
+import { Login } from './components/login/Login';
 
 const store = require('./reducers').init();
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path="/" render={() => { return <Redirect to="/rentals" /> }} />
             <Route exact path="/rentals" component={RentalListing} />
             <Route exact path="/rentals/:id" component={RentalDetail} />
+            <Route exact path="/login" component={Login} />
           </div>
         </div>
         </BrowserRouter>
