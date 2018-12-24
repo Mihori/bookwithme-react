@@ -5,22 +5,31 @@ import {
   withGoogleMap,
   GoogleMap,
   Circle,
+  InfoWindow,
+  Marker
 } from "react-google-maps";
-import { reject } from 'q';
 
 const MapComponent = props => {
-  const { coordinates } = props;
-
+  const { coordinates, isError, isLocationLoaded } = props;
+  
   return (
     <GoogleMap
       defaultZoom={13}
       defaultCenter={coordinates}
       center={coordinates}
     >
-      <Circle
-        center={coordinates}
-        radius={500}
-      />
+      {isLocationLoaded && !isError && <Circle center={coordinates} radius={500} />}
+      {isLocationLoaded && isError && 
+      <Marker>
+      <InfoWindow position={coordinates} options={{ maxWidth: 300 }}>
+        <div>
+          Oops, the location cannot be found on the map.
+          We are trying to resolve the issue as fast as possible.
+          Contact host for additional information if you are still interested in booking this place.
+          We are sorry for the inconvinience.
+        </div>
+      </InfoWindow>
+    </Marker>}
     </GoogleMap>
   )
 }
@@ -30,17 +39,26 @@ const withGeoCode = WrappedComponent => (
 
     constructor() {
       super();
-      this.cacher = new Cacher;
+      this.cacher = new Cacher();
       this.state = {
         coordinates: {
           latitude: 0,
           longitude: 0
-        }
+        },
+        isError: false,
+        isLocationLoaded: false
       }
     }
 
     componentWillMount() {
       this.getGeocodedLocation();
+    }
+
+    updateCoordinates(coordinates) {
+      this.setState({
+        coordinates,
+        isLocationLoaded: true
+      });
     }
 
     geocodeLocation(location) {
@@ -67,18 +85,17 @@ const withGeoCode = WrappedComponent => (
       const location = this.props.location;
 
       if (this.cacher.isValueCached(location)) {
-        this.setState({
-          coordinates: this.caches.getCachedValue(location)
-        });    
+        this.updateCoordinates(this.caches.getCachedValue(location));  
       } else {
         this.geocodeLocation(location).then(
           (coordinates) => {
-            this.setState({
-              coordinates
-            });
+            this.updateCoordinates(coordinates);  
           },
           (error) => {
-            console.log(error);
+            this.setState({
+              isError: true,
+              isLocationLoaded: true
+            });
           }
         );
       }
