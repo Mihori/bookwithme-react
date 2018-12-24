@@ -44,7 +44,7 @@ export const getRentalById = (rentalId) => {
 // AUTH ACTIONS
 
 export const register = (userdata) => {
-  return axios.post('/api/v1/users/register', userdata).then(
+  return axios.post('http://localhost:3001/api/v1/users/register', userdata).then(
     (res) => {
       return res.data;
     },
