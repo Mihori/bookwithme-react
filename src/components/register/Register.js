@@ -1,5 +1,6 @@
 import React from 'react';
 import RegisterForm from './RegisterForm';
+import { Redirect } from 'react-router-dom';
 
 import * as actions from 'actions';
 
@@ -9,7 +10,8 @@ export class Register extends React.Component {
     super();
 
     this.state = {
-      errors: []
+      errors: [],
+      redirect: false
     }
 
     this.registerUser = this.registerUser.bind(this);
@@ -17,18 +19,17 @@ export class Register extends React.Component {
 
   registerUser(userData) {
     actions.register(userData).then(
-      (registered) => {
-
-      },
-      (errors) => {
-        this.setState({
-          errors
-        })
-      }
+      registered => this.setState({ redirect: true }),
+      errors => this.setState({ errors })
     );
   }  
 
   render() {
+
+    if (this.state.redirect) {
+      return <Redirect to={{ pathname: '/login', state: { successRegister: true } }} />
+    }
+
     return (
       <section id='register'>
         <div className='bwm-form'>
