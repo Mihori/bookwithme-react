@@ -5,13 +5,25 @@ import * as actions from 'actions';
 
 export class Register extends React.Component {
   
+  constructor() {
+    super();
+
+    this.state = {
+      errors: []
+    }
+
+    this.registerUser = this.registerUser.bind(this);
+  }
+
   registerUser(userData) {
     actions.register(userData).then(
       (registered) => {
-        
+
       },
       (errors) => {
-
+        this.setState({
+          errors
+        })
       }
     );
   }  
@@ -23,7 +35,7 @@ export class Register extends React.Component {
           <div className='row'>
             <div className='col-md-5'>
               <h1>Register</h1>
-              <RegisterForm registerUser={this.registerUser}/>
+              <RegisterForm registerUser={this.registerUser} errors={this.state.errors}/>
             </div>
             <div className='col-md-6 ml-auto'>
               <div className='image-container'>
