@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 
 const RegisterForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -43,7 +43,7 @@ const RegisterForm = props => {
         <label>Confirmation Password</label>
         <div>
           <Field
-            name="password"
+            name="passwordConfirmation"
             component="input"
             type="password"
             className="form-control"
