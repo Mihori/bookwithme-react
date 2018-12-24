@@ -1,4 +1,5 @@
 import React from 'react';
+import RegisterForm from './RegisterForm';
 
 export class Register extends React.Component {
 
@@ -9,7 +10,7 @@ export class Register extends React.Component {
           <div className='row'>
             <div className='col-md-5'>
               <h1>Register</h1>
-              REGISTER FORM HERE!!!
+              <RegisterForm />
             </div>
             <div className='col-md-6 ml-auto'>
               <div className='image-container'>
