@@ -1,10 +1,19 @@
 import React from 'react';
 import RegisterForm from './RegisterForm';
 
+import * as actions from 'actions';
+
 export class Register extends React.Component {
   
   registerUser(userData) {
-    console.log(userData);
+    actions.register(userData).then(
+      (registered) => {
+        
+      },
+      (errors) => {
+
+      }
+    );
   }  
 
   render() {
