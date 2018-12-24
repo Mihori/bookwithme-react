@@ -40,3 +40,16 @@ export const getRentalById = (rentalId) => {
     });
   }
 }
+
+// AUTH ACTIONS
+
+export const register = (userdata) => {
+  return axios.post('/api/v1/users/register', userdata).then(
+    (res) => {
+      return res.data;
+    },
+    (err) => {
+      return Promise.reject(err.response.data.errors);
+    }
+  )
+}
