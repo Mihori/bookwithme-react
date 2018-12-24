@@ -17,6 +17,7 @@ const MapComponent = props => {
       defaultZoom={13}
       defaultCenter={coordinates}
       center={coordinates}
+      options={{ disableDefaultUI: isError ? true : false }}
     >
       {isLocationLoaded && !isError && <Circle center={coordinates} radius={500} />}
       {isLocationLoaded && isError && 
