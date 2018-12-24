@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { FormInput } from '../../shared/form/FormInput';
+import { ResponseError } from '../../shared/form/ResponseError';
 
 const RegisterForm = props => {
   const { handleSubmit, pristine, submitting, registerUser, valid, errors } = props;
@@ -38,11 +39,7 @@ const RegisterForm = props => {
         <button className="btn btn-bwm btn-form" type="submit" disabled={!valid || pristine || submitting}>
           Submit
         </button>
-        {errors.length > 0 &&
-        <div className="alert alert-danger bwm-res-errors">
-          {errors.map((error, index) => <p key={index}>{error.detail}</p>)}  
-        </div>
-        }
+        {<ResponseError errors={errors} />}
     </form>
   )
 }
