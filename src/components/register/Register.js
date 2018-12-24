@@ -2,6 +2,10 @@ import React from 'react';
 import RegisterForm from './RegisterForm';
 
 export class Register extends React.Component {
+  
+  registerUser(userData) {
+    console.log(userData);
+  }  
 
   render() {
     return (
@@ -10,7 +14,7 @@ export class Register extends React.Component {
           <div className='row'>
             <div className='col-md-5'>
               <h1>Register</h1>
-              <RegisterForm />
+              <RegisterForm registerUser={this.registerUser}/>
             </div>
             <div className='col-md-6 ml-auto'>
               <div className='image-container'>
