@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { FormInput } from '../../shared/form/FormInput';
 
 const RegisterForm = props => {
-  const { handleSubmit, pristine, submitting, registerUser } = props;
+  const { handleSubmit, pristine, submitting, registerUser, valid } = props;
 
   return (
     <form onSubmit={handleSubmit(registerUser)}>
@@ -35,7 +35,7 @@ const RegisterForm = props => {
             className="form-control"
             component={FormInput}
           />
-        <button className="btn btn-bwm btn-form" type="submit" disabled={pristine || submitting}>
+        <button className="btn btn-bwm btn-form" type="submit" disabled={!valid || pristine || submitting}>
           Submit
         </button>
     </form>
