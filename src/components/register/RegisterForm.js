@@ -2,7 +2,8 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 const RegisterForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
+  const { handleSubmit, pristine, reset, submitting } = props;
+  
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -50,7 +51,7 @@ const RegisterForm = props => {
         </div>
       </div>
       <div>
-        <button className="btn btn-bwm" type="submit" disabled={pristine || submitting}>
+        <button className="btn btn-bwm btn-form" type="submit" disabled={pristine || submitting}>
           Submit
         </button>
       </div>
