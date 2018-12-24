@@ -45,11 +45,7 @@ export const getRentalById = (rentalId) => {
 
 export const register = (userdata) => {
   return axios.post('http://localhost:3001/api/v1/users/register', userdata).then(
-    (res) => {
-      return res.data;
-    },
-    (err) => {
-      return Promise.reject(err.response.data.errors);
-    }
+    res => res.data,
+    err => Promise.reject(err.response.data.errors)
   )
 }
