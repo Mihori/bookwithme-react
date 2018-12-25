@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS } from "./types";
+import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE } from "./types";
 
 const resetRentals = () => {
   return {
@@ -48,4 +48,18 @@ export const register = (userdata) => {
     res => res.data,
     err => Promise.reject(err.response.data.errors)
   )
+}
+
+const loginSuccess = (token) => {
+  return {
+    type: LOGIN_SUCCESS,
+    token
+  }
+}
+
+const loginFailure = (errors) => {
+  return {
+    type: LOGIN_FAILURE,
+    errors
+  }
 }
