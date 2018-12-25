@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE } from "./types";
+import authService from '../services/auth-service';
 
 const resetRentals = () => {
   return {
@@ -60,6 +61,14 @@ const loginFailure = (errors) => {
   return {
     type: LOGIN_FAILURE,
     errors
+  }
+}
+
+export const checkAuthState = () => {
+  return dispatch => {
+    if(authService.isAuthenticated()) {
+      dispatch(loginSuccess());
+    }
   }
 }
 
