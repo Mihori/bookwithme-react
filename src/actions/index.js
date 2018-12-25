@@ -64,7 +64,7 @@ const loginFailure = (errors) => {
   }
 }
 
-export const login = (userData) => {
+export const login = (userData) => {  
   return dispatch => {
     return axios.post('http://localhost:3001/api/v1/users/auth', userData)
       .then(res => res.data)
@@ -72,7 +72,7 @@ export const login = (userData) => {
         localStorage.setItem('auth_token', token);
         dispatch(loginSuccess(token));
       })
-      .catch(response => {
+      .catch(({response}) => {
         dispatch(loginFailure(response.data.errors));
       });
   }

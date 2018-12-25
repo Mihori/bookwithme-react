@@ -1,11 +1,18 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
+import * as actions from 'actions';
 
 export class Login extends React.Component {
 
+  constructor() {
+    super();
+
+    this.loginUser = this.loginUser.bind(this);
+  }
+
   loginUser(userData) {
-    console.log('user logged in');
+    this.props.dispatch(actions.login(userData));
   }
    
   render() {
