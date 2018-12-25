@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from 'actions';
 
 export class Login extends React.Component {
@@ -16,6 +17,10 @@ export class Login extends React.Component {
   }
    
   render() {
+    if(this.props.auth.isAuth) {
+      return <Redirect to={{ pathname: '/rentals' }} />
+    }
+
     return (
       <section id="login">
         <div className="bwm-form">
