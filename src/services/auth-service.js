@@ -3,16 +3,22 @@ import * as moment from 'moment';
 
 class AuthService {
 
+  tokenKey = 'auth_token';
+
   getToken() {
-    return localStorage.getItem('auth_token');
+    return localStorage.getItem(this.tokenKey);
   }
 
   getExpiration(token) {    
     return moment.unix(jwt.decode(token).exp);
   }
 
+  saveToken(token) {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
   invalidateUser() {
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem(this.tokenKey);
   } 
 
   isValid(token) {
