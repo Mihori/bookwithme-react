@@ -22,7 +22,7 @@ export class Login extends React.Component {
           <div className="row">
             <div className="col-md-5">
               <h1>Login</h1>
-              <LoginForm loginUser={this.loginUser}/>
+              <LoginForm loginUser={this.loginUser} errors={this.props.auth.errors} />
             </div>
             <div className="col-md-6 ml-auto">
               <div className="image-container">
