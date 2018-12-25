@@ -3,6 +3,11 @@
 @import 'rental/rental-listing';
 @import 'form/form';
 
+.clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
 
 .page-title {
   font-size: 30px;
