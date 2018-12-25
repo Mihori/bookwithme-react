@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from './LoginForm';
+import { connect } from 'mongoose';
 
 export class Login extends React.Component {
 
@@ -28,3 +29,11 @@ export class Login extends React.Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(Login);
