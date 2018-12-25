@@ -2,6 +2,9 @@ import axios from 'axios';
 
 import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "./types";
 import authService from '../services/auth-service';
+import axiosService from '../services/axios-service';
+
+const axiosInstance = axiosService.getInstance();
 
 const resetRentals = () => {
   return {
@@ -25,7 +28,7 @@ const renderRentals = (rentals) => {
 
 export const getRentals = () => {
   return dispatch => {
-    axios.get('http://localhost:3001/api/v1/rentals').then((rentals) => {
+    axiosInstance.get('/rentals').then((rentals) => {
       dispatch(renderRentals(rentals.data)); 
     });
   }
@@ -87,7 +90,7 @@ export const login = (userData) => {
 }
 
 export const logout = () => {
-authService.invalidateUser();
+  authService.invalidateUser();
 
   return {
     type: LOGOUT
