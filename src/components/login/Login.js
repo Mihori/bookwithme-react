@@ -17,6 +17,8 @@ export class Login extends React.Component {
   }
    
   render() {
+    const { successRegister } = this.props.location.state || false;
+
     if(this.props.auth.isAuth) {
       return <Redirect to={{ pathname: '/rentals' }} />
     }
@@ -27,6 +29,13 @@ export class Login extends React.Component {
           <div className="row">
             <div className="col-md-5">
               <h1>Login</h1>
+              {
+                successRegister && 
+                <div className="alert alert-success">
+                  <p>You have been successfully registered, please login.
+                  </p>
+                </div>
+              }
               <LoginForm loginUser={this.loginUser} errors={this.props.auth.errors} />
             </div>
             <div className="col-md-6 ml-auto">
