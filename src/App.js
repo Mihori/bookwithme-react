@@ -10,6 +10,7 @@ import Login from 'components/login/Login';
 import { Register } from 'components/register/Register';
 
 import { ProtectedRoute } from './shared/auth/ProtectedRoute';
+import { LoggedInRoute } from './shared/auth/LoggedInRoute';
 
 import * as actions from 'actions';
 
@@ -34,11 +35,11 @@ class App extends Component {
         <div className="App">
           <Header logout={this.logout} />
           <div className="container">
-            <Route exact path="/" render={() => { return <Redirect to="/rentals" /> }} />
+            <Route exact path="/" render={() => <Redirect to="/rentals" /> } />
             <Route exact path="/rentals" component={RentalListing} />
             <ProtectedRoute exact path="/rentals/:id" component={RentalDetail} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            <LoggedInRoute exact path="/register" component={Register} />
           </div>
         </div>
         </BrowserRouter>
