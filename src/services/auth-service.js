@@ -11,6 +11,10 @@ class AuthService {
     return moment.unix(jwt.decode(token).exp);
   }
 
+  invalidateUser() {
+    localStorage.removeItem('auth_token');
+  } 
+
   isValid(token) {
     return moment().isBefore(this.getExpiration(token));
   }
