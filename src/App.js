@@ -9,6 +9,8 @@ import RentalDetail from 'components/rental/rental-detail/RentalDetail';
 import Login from 'components/login/Login';
 import { Register } from 'components/register/Register';
 
+import { ProtectedRoute } from './shared/auth/ProtectedRoute';
+
 import * as actions from 'actions';
 
 import './App.css';
@@ -34,7 +36,7 @@ class App extends Component {
           <div className="container">
             <Route exact path="/" render={() => { return <Redirect to="/rentals" /> }} />
             <Route exact path="/rentals" component={RentalListing} />
-            <Route exact path="/rentals/:id" component={RentalDetail} />
+            <ProtectedRoute exact path="/rentals/:id" component={RentalDetail} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
           </div>
