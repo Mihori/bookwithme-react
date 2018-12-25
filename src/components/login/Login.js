@@ -3,7 +3,7 @@ import LoginForm from './LoginForm';
 
 export class Login extends React.Component {
 
-  loginUser() {
+  loginUser(userData) {
     console.log('user logged in');
   }
    

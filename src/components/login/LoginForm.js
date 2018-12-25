@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { FormInput } from '../../shared/form/FormInput';
+import { required, minLength4 } from '../../shared/form/validators';
 
 const LoginForm = props => {
   const { handleSubmit, pristine, submitting, loginUser, valid } = props;
@@ -13,6 +14,7 @@ const LoginForm = props => {
             type="email"
             className="form-control"
             component={FormInput}
+            validate={[required, minLength4]}
           />
           <Field
             name="password"
@@ -20,6 +22,7 @@ const LoginForm = props => {
             type="password"
             className="form-control"
             component={FormInput}
+            validate={[required]}
           />
         <button className="btn btn-bwm btn-form" type="submit" disabled={!valid || pristine || submitting}>
           Submit
@@ -29,5 +32,5 @@ const LoginForm = props => {
 }
 
 export default reduxForm({
-  form: 'registerForm',
+  form: 'loginForm',
 })(LoginForm);
