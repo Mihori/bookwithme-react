@@ -77,7 +77,7 @@ export const login = (userData) => {
     return axios.post('http://localhost:3001/api/v1/users/auth', userData)
       .then(res => res.data)
       .then(token => {
-        localStorage.setItem('auth_token', token);
+        authService.saveToken(token);
         dispatch(loginSuccess());
       })
       .catch(({response}) => {
