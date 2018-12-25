@@ -8,7 +8,7 @@ import RentalListing from 'components/rental/rental-listing/RentalListing';
 import RentalDetail from 'components/rental/rental-detail/RentalDetail';
 
 import './App.css';
-import { Login } from 'components/login/Login';
+import Login from 'components/login/Login';
 import { Register } from 'components/register/Register';
 
 const store = require('./reducers').init();

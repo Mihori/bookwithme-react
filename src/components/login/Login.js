@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginForm from './LoginForm';
-import { connect } from 'mongoose';
+import { connect } from 'react-redux';
 
 export class Login extends React.Component {
 
