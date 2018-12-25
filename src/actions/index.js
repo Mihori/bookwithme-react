@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE } from "./types";
+import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "./types";
 import authService from '../services/auth-service';
 
 const resetRentals = () => {
@@ -83,5 +83,11 @@ export const login = (userData) => {
       .catch(({response}) => {
         dispatch(loginFailure(response.data.errors));
       });
+  }
+}
+
+export const logout = () => {
+  return {
+    type: LOGOUT
   }
 }
