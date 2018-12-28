@@ -71,6 +71,14 @@ export class Booking extends React.Component {
     })
   }
 
+  confirmProposedData() {
+    this.setState({
+      modal: {
+        open: true
+      }
+    });
+  }
+
   render() {
     const { rental } = this.props;
 
@@ -93,7 +101,7 @@ export class Booking extends React.Component {
                  type="number"
                  className="form-control" id="guests" aria-describedby="emailHelp" placeholder=""></input>
         </div>
-        <button onClick={() => this.reserve()} className="btn btn-bwm btn-confirm btn-block">Reserve place now</button>
+        <button onClick={() => this.confirmProposedData()} className="btn btn-bwm btn-confirm btn-block">Reserve place now</button>
         <hr></hr>
         <p className="booking-note-title">People are interested into this house</p>
         <p className="booking-note-text">
