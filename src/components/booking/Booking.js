@@ -25,6 +25,7 @@ export class Booking extends React.Component {
 
     this.checkInvalidDates = this.checkInvalidDates.bind(this);
     this.handleApply = this.handleApply.bind(this);
+    this.cancelConfirmation = this.cancelConfirmation.bind(this);
 
   }
 
@@ -67,6 +68,14 @@ export class Booking extends React.Component {
       proposedBooking: {
         ...this.state.proposedBooking,
         guests: parseInt(event.target.value, 10)
+      }
+    })
+  }
+
+  cancelConfirmation() {
+    this.setState({
+      modal: {
+        open: false
       }
     })
   }
