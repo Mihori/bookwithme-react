@@ -82,7 +82,17 @@ export class Booking extends React.Component {
   }
 
   confirmProposedData() {
+    const {startAt, endAt} = this.state.proposedBooking;
+    const days = getRangeOfDates(startAt, endAt).length - 1;
+    const { rental } = this.props;
+
     this.setState({
+      proposedBooking: {
+        ...this.state.proposedBooking,
+        days,
+        totalPrice: days * rental.dailyRate,
+        rental
+      },
       modal: {
         open: true
       }
@@ -117,7 +127,12 @@ export class Booking extends React.Component {
         <p className="booking-note-text">
           More than 500 people checked this rental in last month.
         </p>
-        <BookingModal open ={this.state.modal.open} close={this.cancelConfirmation} />
+        <BookingModal open={this.state.modal.open}
+                      closeModal={this.cancelConfirmation}
+                      confirmModal={this.reserveRental}
+                      booking={this.state.proposedBooking}
+                      errors={this.state.errors}
+                      rentalPrice={rental.dailyRate}/>
       </div>
     )
   }
