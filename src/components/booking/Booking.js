@@ -143,9 +143,13 @@ export class Booking extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="guests">Guests</label>
-          <input onChange={(event) => this.selectGuests(event)} 
+          <input onChange={(event) => this.selectGuests(event)}
+                 value={guests}
                  type="number"
-                 className="form-control" id="guests" aria-describedby="emailHelp" placeholder=""></input>
+                 className="form-control"
+                 id="guests"
+                 aria-describedby="emailHelp"
+                 placeholder=""></input>
         </div>
         <button disabled={!startAt || !endAt || !guests} onClick={() => this.confirmProposedData()} className="btn btn-bwm btn-confirm btn-block">Reserve place now</button>
         <hr></hr>
