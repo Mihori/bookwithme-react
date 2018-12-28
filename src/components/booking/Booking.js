@@ -2,6 +2,7 @@ import React from 'react';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import { getRangeOfDates } from 'helpers';
 import * as moment from 'moment';
+import { BookingModal } from './BookingModal';
 
 export class Booking extends React.Component {
 
@@ -116,6 +117,7 @@ export class Booking extends React.Component {
         <p className="booking-note-text">
           More than 500 people checked this rental in last month.
         </p>
+        <BookingModal open ={this.state.modal.open} close={this.cancelConfirmation} />
       </div>
     )
   }
