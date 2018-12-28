@@ -88,6 +88,12 @@ export class Booking extends React.Component {
     this.bookedOutDates.push(...dateRange);
   }
 
+  resetData() {
+    this.dateRef.current.value = '';
+
+    this.setState({proposedBooking: {guests: ''}});
+  }
+
   confirmProposedData() {
     const {startAt, endAt} = this.state.proposedBooking;
     const days = getRangeOfDates(startAt, endAt).length - 1;
