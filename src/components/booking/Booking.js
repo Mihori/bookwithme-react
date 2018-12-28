@@ -3,6 +3,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import { getRangeOfDates } from 'helpers';
 import * as moment from 'moment';
 import { BookingModal } from './BookingModal';
+import * as actions from 'actions';
 
 export class Booking extends React.Component {
 
@@ -82,6 +83,11 @@ export class Booking extends React.Component {
     })
   }
 
+  addNewBookedOutDates(booking) {
+    const dateRange = getRangeOfDates(booking.startAt, booking.endAt);
+    this.bookedOutDates.push(...dateRange);
+  }
+
   confirmProposedData() {
     const {startAt, endAt} = this.state.proposedBooking;
     const days = getRangeOfDates(startAt, endAt).length - 1;
@@ -106,7 +112,6 @@ export class Booking extends React.Component {
         this.addNewBookedOutDates(booking);
         this.cancelConfirmation();
         this.resetData();
-        toast.success('Booking has been successfully created!');
       },
       (errors) => {
         this.setState({errors});
