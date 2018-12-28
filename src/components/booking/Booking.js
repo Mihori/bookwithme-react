@@ -27,6 +27,7 @@ export class Booking extends React.Component {
     this.checkInvalidDates = this.checkInvalidDates.bind(this);
     this.handleApply = this.handleApply.bind(this);
     this.cancelConfirmation = this.cancelConfirmation.bind(this);
+    this.reserveRental = this.reserveRental.bind(this);
 
   }
 
@@ -97,6 +98,19 @@ export class Booking extends React.Component {
         open: true
       }
     });
+  }
+
+  reserveRental() {
+    actions.createBooking(this.state.proposedBooking).then(
+      (booking) => {
+        this.addNewBookedOutDates(booking);
+        this.cancelConfirmation();
+        this.resetData();
+        toast.success('Booking has been successfully created!');
+      },
+      (errors) => {
+        this.setState({errors});
+      })
   }
 
   render() {
