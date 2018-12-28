@@ -1,7 +1,29 @@
 import React from 'react';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
+import { getRangeOfDates } from 'helpers';
 
 export class Booking extends React.Component {
+
+  constructor() {
+    super();
+
+    this.bookedOutDates = [];
+    }
+
+  componentWillMount() {
+    this.getBookedOutDates();
+  }
+
+  getBookedOutDates() {
+    const {bookings} = this.props.rental;
+
+    if (bookings && bookings.length > 0) {
+      bookings.forEach(booking => {
+        const dateRange = getRangeOfDates(booking.startAt, booking.endAt, 'Y/MM/DD');
+        this.bookedOutDates.push(...dateRange);
+      });
+    }
+  }
 
   render() {
     const { rental } = this.props;
