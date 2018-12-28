@@ -101,6 +101,7 @@ export class Booking extends React.Component {
 
   render() {
     const { rental } = this.props;
+    const { startAt, endAt, guests } = this.state.proposedBooking;
 
     return (
       <div className="booking">
@@ -121,7 +122,7 @@ export class Booking extends React.Component {
                  type="number"
                  className="form-control" id="guests" aria-describedby="emailHelp" placeholder=""></input>
         </div>
-        <button onClick={() => this.confirmProposedData()} className="btn btn-bwm btn-confirm btn-block">Reserve place now</button>
+        <button disabled={!startAt || !endAt || !guests} onClick={() => this.confirmProposedData()} className="btn btn-bwm btn-confirm btn-block">Reserve place now</button>
         <hr></hr>
         <p className="booking-note-title">People are interested into this house</p>
         <p className="booking-note-text">
