@@ -12,7 +12,7 @@ export class Booking extends React.Component {
         <hr></hr>
         <div className='form-group'>
         <label htmlFor='dates'>Dates</label>
-          <DateRangePicker open="left" containerStyles={{ display: 'block' }}>
+          <DateRangePicker opens="left" containerStyles={{ display: 'block' }}>
             <input id="dates" type="text" className="form-control"></input>
           </DateRangePicker>
         </div>
