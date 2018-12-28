@@ -25,6 +25,7 @@ export class Booking extends React.Component {
 
     this.checkInvalidDates = this.checkInvalidDates.bind(this);
     this.handleApply = this.handleApply.bind(this);
+
   }
 
   componentWillMount() {
@@ -61,30 +62,41 @@ export class Booking extends React.Component {
     });
   }
 
+  selectGuests(event) {
+    this.setState({
+      proposedBooking: {
+        ...this.state.proposedBooking,
+        guests: parseInt(event.target.value, 10)
+      }
+    })
+  }
+
   render() {
     const { rental } = this.props;
 
     return (
-      <div className='booking'>
-        <h3 className='booking-price'>{rental.dailyRate} $ <span className='booking-per-night'>per night</span></h3>
+      <div className="booking">
+        <h3 className="booking-price">{rental.dailyRate} $ <span className="booking-per-night">per night</span></h3>
         <hr></hr>
-        <div className='form-group'>
-        <label htmlFor='dates'>Dates</label>
+        <div className="form-group">
+        <label htmlFor="dates">Dates</label>
           <DateRangePicker onApply={this.handleApply}
                            isInvalidDate={this.checkInvalidDates}
                            opens="left"
-                           containerStyles={{ display: 'block' }}>
-            <input id="dates" type="text" className="form-control"></input>
+                           containerStyles={{ display: "block" }}>
+            <input ref={this.dateRef} id="dates" type="text" className="form-control"></input>
           </DateRangePicker>
         </div>
-        <div className='form-group'>
-          <label htmlFor='guests'>Guests</label>
-          <input ref={this.dateRef} type='number' className='form-control' id='guests' aria-describedby='emailHelp' placeholder=''></input>
+        <div className="form-group">
+          <label htmlFor="guests">Guests</label>
+          <input onChange={(event) => this.selectGuests(event)} 
+                 type="number"
+                 className="form-control" id="guests" aria-describedby="emailHelp" placeholder=""></input>
         </div>
-        <button className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
+        <button onClick={() => this.reserve()} className="btn btn-bwm btn-confirm btn-block">Reserve place now</button>
         <hr></hr>
-        <p className='booking-note-title'>People are interested into this house</p>
-        <p className='booking-note-text'>
+        <p className="booking-note-title">People are interested into this house</p>
+        <p className="booking-note-text">
           More than 500 people checked this rental in last month.
         </p>
       </div>
