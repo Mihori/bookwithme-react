@@ -9,9 +9,23 @@ export class Booking extends React.Component {
     super();
 
     this.bookedOutDates = [];
+    this.dateRef = React.createRef();
+
+    this.state = {
+      proposedBooking: {
+        startAt: '',
+        endAt: '',
+        guests: ''
+      },
+      modal: {
+        open: false
+      },
+      errors: []
+    }
 
     this.checkInvalidDates = this.checkInvalidDates.bind(this);
-    }
+    this.handleApply = this.handleApply.bind(this);
+  }
 
   componentWillMount() {
     this.getBookedOutDates();
@@ -32,6 +46,21 @@ export class Booking extends React.Component {
     return this.bookedOutDates.includes(date.format('Y/MM/DD')) || date.diff(moment(), 'days') < 0;
   }
 
+  handleApply(event, picker) {
+    const startAt = picker.startDate.format('Y/MM/DD');
+    const endAt = picker.endDate.format('Y/MM/DD');
+
+    this.dateRef.current.value = startAt + ' - ' + endAt;
+
+    this.setState({
+      proposedBooking: {
+        ...this.state.proposedBooking,
+        startAt,
+        endAt
+      }
+    });
+  }
+
   render() {
     const { rental } = this.props;
 
@@ -41,13 +70,16 @@ export class Booking extends React.Component {
         <hr></hr>
         <div className='form-group'>
         <label htmlFor='dates'>Dates</label>
-          <DateRangePicker isInvalidDate={this.checkInvalidDates} opens="left" containerStyles={{ display: 'block' }}>
+          <DateRangePicker onApply={this.handleApply}
+                           isInvalidDate={this.checkInvalidDates}
+                           opens="left"
+                           containerStyles={{ display: 'block' }}>
             <input id="dates" type="text" className="form-control"></input>
           </DateRangePicker>
         </div>
         <div className='form-group'>
           <label htmlFor='guests'>Guests</label>
-          <input type='number' className='form-control' id='guests' aria-describedby='emailHelp' placeholder=''></input>
+          <input ref={this.dateRef} type='number' className='form-control' id='guests' aria-describedby='emailHelp' placeholder=''></input>
         </div>
         <button className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
         <hr></hr>
