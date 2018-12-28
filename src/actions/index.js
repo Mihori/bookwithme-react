@@ -96,3 +96,11 @@ export const logout = () => {
     type: LOGOUT
   }
 }
+
+// BOOKING ACTIONS
+
+export const createBooking = (booking) => {
+  return axiosInstance.post('http://localhost:3001/api/v1/bookings', booking)
+      .then(res => res.data)
+      .catch(({response}) => Promise.reject(response.data.errors))
+}
