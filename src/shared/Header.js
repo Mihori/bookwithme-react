@@ -47,7 +47,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { isAuth } = this.props.auth;
+    const { isAuth, username } = this.props.auth;
 
     return (
       <nav className="navbar navbar-dark navbar-expand-lg">
@@ -59,6 +59,9 @@ class Header extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ml-auto">
+            { isAuth &&
+                <a className='nav-item nav-link'>{username}</a>
+              }
               {this.renderOwnerSection(isAuth)}
               {this.renderAuthButtons(isAuth)}
             </div>
