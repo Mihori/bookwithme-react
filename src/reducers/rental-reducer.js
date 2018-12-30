@@ -2,10 +2,12 @@ import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, GET_RENTALS_INIT, GET_RENT
 
 const INITIAL_STATE = {
   rentals: {
-    data: []
+    data: [],
+    errors: []
   },
   rental: {
-    data: {}
+    data: {},
+    errors: []
   }
 }
 

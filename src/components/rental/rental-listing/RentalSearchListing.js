@@ -2,6 +2,7 @@ import React from 'react';
 import { RentalList } from './RentalList';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
+import { toUpperCase } from '../../../helpers';
 
 class RentalSearchListing extends React.Component {
 
@@ -26,10 +27,27 @@ class RentalSearchListing extends React.Component {
     this.props.dispatch(actions.getRentals(searchedCity));
   }
 
+  renderTitle() {
+    const { errors, data } = this.props.rentals;
+    const { searchedCity } = this.state;
+    let title = '';
+    console.log(this.props.rentals)
+
+    if (errors.length > 0) {
+      title = errors[0].detail;
+    }
+
+    if(data.length > 0) {
+      title = `Your Home in City of ${toUpperCase(searchedCity)}`;
+    }
+
+    return <h1 className="page-title">{title}</h1>
+  }
+
   render() {
     return (
       <section id="rentalListing">
-        <h1 className="page-title">Your Home in {this.state.searchedCity}</h1>
+        {this.renderTitle()}
         <RentalList rentals={this.props.rentals} />
       </section>
 
@@ -39,7 +57,7 @@ class RentalSearchListing extends React.Component {
 
 function mapStateToProps(state) {  
   return {
-    rentals: state.rentals.data
+    rentals: state.rentals
   }
 }
 
