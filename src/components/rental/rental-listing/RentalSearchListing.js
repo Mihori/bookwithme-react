@@ -31,7 +31,6 @@ class RentalSearchListing extends React.Component {
     const { errors, data } = this.props.rentals;
     const { searchedCity } = this.state;
     let title = '';
-    console.log(this.props.rentals)
 
     if (errors.length > 0) {
       title = errors[0].detail;
@@ -48,7 +47,7 @@ class RentalSearchListing extends React.Component {
     return (
       <section id="rentalListing">
         {this.renderTitle()}
-        <RentalList rentals={this.props.rentals} />
+        <RentalList rentals={this.props.rentals.data} />
       </section>
 
     )
