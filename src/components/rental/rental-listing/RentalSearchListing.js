@@ -19,14 +19,14 @@ export class RentalSearchListing extends React.Component {
       searchedCity
     })
 
-    this.props.dispatch(actions.getRentals());
+    // this.props.dispatch(actions.getRentals());
   }
 
   render() {
     return (
       <section id="rentalListing">
         <h1 className="page-title">Your Home in {this.state.searchedCity}</h1>
-        <RentalList rentals={this.props.rentals} />
+        <RentalList rentals={[]} />
       </section>
 
     )

@@ -26,9 +26,11 @@ const renderRentals = (rentals) => {
   }
 }
 
-export const getRentals = () => {
+export const getRentals = (city) => {
+  const url = city ? `/rentals/?city=${city}` : '/rentals';
+
   return dispatch => {
-    axiosInstance.get('/rentals').then((rentals) => {
+    axiosInstance.get(url).then((rentals) => {
       dispatch(renderRentals(rentals.data)); 
     });
   }
