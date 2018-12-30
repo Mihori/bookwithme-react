@@ -9,6 +9,10 @@ class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
+  decode(token) {
+    return jwt.decode(token);
+  }
+
   getExpiration(token) {    
     return moment.unix(jwt.decode(token).exp);
   }
