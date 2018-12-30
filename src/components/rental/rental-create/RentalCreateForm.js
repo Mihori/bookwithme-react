@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { FormInput } from 'shared/form/FormInput';
 import { ResponseError } from 'shared/form/ResponseError';
+import { TextArea } from '../../../shared/form/TextArea';
 
 const RentalCreateForm = props => {
   const { handleSubmit, pristine, submitting, submitCb, valid, options, errors } = props
@@ -20,7 +21,7 @@ const RentalCreateForm = props => {
         label='Description'
         rows='6'
         className='form-control'
-        component={FormInput}
+        component={TextArea}
       />
       <Field
         name="city"
