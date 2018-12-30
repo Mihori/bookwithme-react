@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { FormInput } from 'shared/form/FormInput';
 import { ResponseError } from 'shared/form/ResponseError';
 import { TextArea } from '../../../shared/form/TextArea';
+import { Select } from '../../../shared/form/Select';
 
 const RentalCreateForm = props => {
   const { handleSubmit, pristine, submitting, submitCb, valid, options, errors } = props
@@ -42,7 +43,7 @@ const RentalCreateForm = props => {
         name="category"
         label='Category'
         className='form-control'
-        component={FormInput}
+        component={Select}
       />
       <Field
         name="image"
