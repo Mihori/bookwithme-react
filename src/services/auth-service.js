@@ -19,7 +19,11 @@ class AuthService {
 
   invalidateUser() {
     localStorage.removeItem(this.tokenKey);
-  } 
+  }
+
+  getUsername() {
+    return this.decode(this.getToken()).username;
+  }
 
   isValid(token) {
     return moment().isBefore(this.getExpiration(token));
