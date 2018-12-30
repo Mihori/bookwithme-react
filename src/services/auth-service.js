@@ -9,6 +9,10 @@ class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
+  decode(token) {
+    return jwt.decode(token);
+  }
+
   getExpiration(token) {    
     return moment.unix(jwt.decode(token).exp);
   }
@@ -19,7 +23,11 @@ class AuthService {
 
   invalidateUser() {
     localStorage.removeItem(this.tokenKey);
-  } 
+  }
+
+  getUsername() {
+    return this.decode(this.getToken()).username;
+  }
 
   isValid(token) {
     return moment().isBefore(this.getExpiration(token));

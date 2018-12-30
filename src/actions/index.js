@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "./types";
+import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, GET_RENTALS_INIT, GET_RENTALS_FAIL } from "./types";
 import authService from '../services/auth-service';
 import axiosService from '../services/axios-service';
 
@@ -26,11 +26,28 @@ const renderRentals = (rentals) => {
   }
 }
 
-export const getRentals = () => {
+const getRentalsInit = (errors) => {
+  return {
+    type: GET_RENTALS_INIT
+  }
+}
+
+const getRentalsFail = (errors) => {
+  return {
+    type: GET_RENTALS_FAIL,
+    errors
+  }
+}
+
+export const getRentals = (city) => {
+  const url = city ? `/rentals/?city=${city}` : '/rentals';
+
   return dispatch => {
-    axiosInstance.get('/rentals').then((rentals) => {
-      dispatch(renderRentals(rentals.data)); 
-    });
+    dispatch(getRentalsInit());
+    axiosInstance.get(url)
+      .then(res => res.data)
+      .then(rentals => dispatch(renderRentals(rentals)))
+      .catch(({response}) => dispatch(getRentalsFail(response.data.errors)))
   }
 }
 
@@ -45,6 +62,13 @@ export const getRentalById = (rentalId) => {
   }
 }
 
+export const createRental = (rentalData) => {
+  return axiosInstance.post('/rentals', rentalData).then(
+    res => res.data,
+    err => Promise.reject(err.response.data.errors)
+  )
+} 
+
 // AUTH ACTIONS
 
 export const register = (userdata) => {
@@ -55,8 +79,11 @@ export const register = (userdata) => {
 }
 
 const loginSuccess = () => {
+const username = authService.getUsername();
+
   return {
     type: LOGIN_SUCCESS,
+    username
   }
 }
 
