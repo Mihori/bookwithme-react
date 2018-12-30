@@ -1,4 +1,4 @@
-import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS } from "../actions/types";
+import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, GET_RENTALS_INIT, GET_RENTALS_FAIL } from "../actions/types";
 
 const INITIAL_STATE = {
   rentals: {
@@ -11,8 +11,12 @@ const INITIAL_STATE = {
 
 export const rentalReducer = (state = INITIAL_STATE.rentals, action) => {
   switch(action.type) {
+    case GET_RENTALS_INIT:
+    return { ...state, data: [], errors: [] };
     case RENDER_RENTALS:    
       return { ...state, data: action.rentals };
+    case GET_RENTALS_FAIL:
+      return { ...state, data: [], errors: action.errors };
     default:
       return state;
   }
