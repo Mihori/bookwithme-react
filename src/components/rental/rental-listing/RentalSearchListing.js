@@ -17,6 +17,16 @@ class RentalSearchListing extends React.Component {
   componentWillMount() {
     this.searchRentalsByCity();
   }
+
+  componentDidUpdate(prevProps) {
+    const currentUrlParam = this.props.match.params.city;
+    const prevUrlParam = prevProps.match.params.city;
+
+    if (currentUrlParam !== prevUrlParam) {
+      this.searchRentalsByCity();
+    }
+
+  }
   
   searchRentalsByCity() {
     const searchedCity = this.props.match.params.city;
