@@ -62,6 +62,13 @@ export const getRentalById = (rentalId) => {
   }
 }
 
+export const createRental = (rentalData) => {
+  return axiosInstance.psot('/rentals', rentalData).then(
+    res => res.data,
+    err => Promise.reject(err.response.data.errors)
+  )
+} 
+
 // AUTH ACTIONS
 
 export const register = (userdata) => {
