@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import Header from 'shared/Header';
 import RentalListing from 'components/rental/rental-listing/RentalListing';
 import RentalDetail from 'components/rental/rental-detail/RentalDetail';
+import RentalSearchListing from './components/rental/rental-listing/RentalSearchListing';
+import { RentalCreate } from './components/rental/rental-create/rental-create';
 import Login from 'components/login/Login';
 import { Register } from 'components/register/Register';
 
@@ -15,7 +17,6 @@ import { LoggedInRoute } from './shared/auth/LoggedInRoute';
 import * as actions from 'actions';
 
 import './App.css';
-import RentalSearchListing from './components/rental/rental-listing/RentalSearchListing';
 
 const store = require('./reducers').init();
 
@@ -39,6 +40,7 @@ class App extends Component {
             <Route exact path="/" render={() => <Redirect to="/rentals" /> } />
             <Route exact path="/rentals" component={RentalListing} />
             <Route exact path="/rentals/:city/homes" component={RentalSearchListing} />
+            <ProtectedRoute exact path="/rentals/new" component={RentalCreate} />
             <ProtectedRoute exact path="/rentals/:id" component={RentalDetail} />
             <Route exact path="/login" component={Login} />
             <LoggedInRoute exact path="/register" component={Register} />
