@@ -3,7 +3,7 @@ import { RentalList } from './RentalList';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
-export class RentalSearchListing extends React.Component {
+class RentalSearchListing extends React.Component {
 
   constructor() {
     super();
@@ -14,19 +14,23 @@ export class RentalSearchListing extends React.Component {
   }
 
   componentWillMount() {
+    this.searchRentalsByCity();
+  }
+  
+  searchRentalsByCity() {
     const searchedCity = this.props.match.params.city;
     this.setState({
       searchedCity
-    })
-
-    // this.props.dispatch(actions.getRentals());
+    });
+  
+    this.props.dispatch(actions.getRentals(searchedCity));
   }
 
   render() {
     return (
       <section id="rentalListing">
         <h1 className="page-title">Your Home in {this.state.searchedCity}</h1>
-        <RentalList rentals={[]} />
+        <RentalList rentals={this.props.rentals} />
       </section>
 
     )
@@ -39,4 +43,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect()(RentalSearchListing);
+export default connect(mapStateToProps)(RentalSearchListing);

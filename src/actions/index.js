@@ -43,11 +43,11 @@ export const getRentals = (city) => {
   const url = city ? `/rentals/?city=${city}` : '/rentals';
 
   return dispatch => {
-    dispatch(getRentalsInit);
-    axiosInstance.get(url).then((rentals) => {
-      dispatch(renderRentals(rentals.data))
-      .catch(({response}) => dispatch(getRentalsFail(response.data.errors))); 
-    });
+    dispatch(getRentalsInit());
+    axiosInstance.get(url)
+      .then(res => res.data)
+      .then(rentals => dispatch(renderRentals(rentals)))
+      .catch(({response}) => dispatch(getRentalsFail(response.data.errors)))
   }
 }
 

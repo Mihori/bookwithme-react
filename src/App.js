@@ -15,7 +15,7 @@ import { LoggedInRoute } from './shared/auth/LoggedInRoute';
 import * as actions from 'actions';
 
 import './App.css';
-import { RentalSearchListing } from './components/rental/rental-listing/RentalSearchListing';
+import RentalSearchListing from './components/rental/rental-listing/RentalSearchListing';
 
 const store = require('./reducers').init();
 
