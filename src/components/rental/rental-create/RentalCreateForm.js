@@ -4,6 +4,7 @@ import { FormInput } from 'shared/form/FormInput';
 import { ResponseError } from 'shared/form/ResponseError';
 import { TextArea } from '../../../shared/form/TextArea';
 import { Select } from '../../../shared/form/Select';
+import { FileUpload } from '../../../shared/form/FileUpload';
 
 const RentalCreateForm = props => {
   const { handleSubmit, pristine, submitting, submitCb, valid, options, errors } = props
@@ -48,7 +49,7 @@ const RentalCreateForm = props => {
       <Field
         name="image"
         label='Image'
-        component={FormInput}
+        component={FileUpload}
       />
       <Field
         name="bedrooms"
