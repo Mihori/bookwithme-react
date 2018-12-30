@@ -7,7 +7,7 @@ import Header from 'shared/Header';
 import RentalListing from 'components/rental/rental-listing/RentalListing';
 import RentalDetail from 'components/rental/rental-detail/RentalDetail';
 import RentalSearchListing from './components/rental/rental-listing/RentalSearchListing';
-import { RentalCreate } from './components/rental/rental-create/rental-create';
+import { RentalCreate } from './components/rental/rental-create/RentalCreate';
 import Login from 'components/login/Login';
 import { Register } from 'components/register/Register';
 
