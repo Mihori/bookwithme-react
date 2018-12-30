@@ -79,7 +79,7 @@ export const register = (userdata) => {
 }
 
 const loginSuccess = () => {
-const username = authService.getUsername;
+const username = authService.getUsername();
 
   return {
     type: LOGIN_SUCCESS,
