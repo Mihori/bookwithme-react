@@ -4,6 +4,9 @@ export const RESET_RENTAL = 'RESET_RENTAL';
 export const RENDER_RENTAL = 'RENDER_RENTAL';
 export const RENDER_RENTALS = 'RENDER_RENTALS';
 
+export const GET_RENTALS_INIT = 'GET_RENTALS_INIT';
+export const GET_RENTALS_FAIL = 'GET_RENTALS_FAIL';
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';

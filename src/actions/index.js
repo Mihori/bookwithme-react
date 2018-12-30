@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "./types";
+import { RESET_RENTAL, RENDER_RENTAL, RENDER_RENTALS, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, GET_RENTALS_INIT, GET_RENTALS_FAIL } from "./types";
 import authService from '../services/auth-service';
 import axiosService from '../services/axios-service';
 
@@ -26,12 +26,27 @@ const renderRentals = (rentals) => {
   }
 }
 
+const getRentalsInit = (errors) => {
+  return {
+    type: GET_RENTALS_INIT
+  }
+}
+
+const getRentalsFail = (errors) => {
+  return {
+    type: GET_RENTALS_FAIL,
+    errors
+  }
+}
+
 export const getRentals = (city) => {
   const url = city ? `/rentals/?city=${city}` : '/rentals';
 
   return dispatch => {
+    dispatch(getRentalsInit);
     axiosInstance.get(url).then((rentals) => {
-      dispatch(renderRentals(rentals.data)); 
+      dispatch(renderRentals(rentals.data))
+      .catch(({response}) => dispatch(getRentalsFail(response.data.errors))); 
     });
   }
 }
