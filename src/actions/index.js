@@ -63,7 +63,7 @@ export const getRentalById = (rentalId) => {
 }
 
 export const createRental = (rentalData) => {
-  return axiosInstance.psot('/rentals', rentalData).then(
+  return axiosInstance.post('/rentals', rentalData).then(
     res => res.data,
     err => Promise.reject(err.response.data.errors)
   )

@@ -1,6 +1,7 @@
 import React from 'react';
 import RentalCreateForm from './RentalCreateForm';
 import * as actions from 'actions';
+import { Redirect } from 'react-router-dom';
 
 export class RentalCreate extends React.Component {
 
@@ -19,14 +20,14 @@ export class RentalCreate extends React.Component {
 
   createRental(rentalData) {
     actions.createRental(rentalData).then(
-      rental => this.setState({ redirect: true }),
-      errors => this.setState({ errors })
+      (rental) => this.setState({ redirect: true }),
+      (errors) => this.setState({ errors })
     )
   }
 
   render() {
-    if (this.redirect) {
-      return <Redirect to {{ pathname='/rentals' }}/>
+    if (this.state.redirect) {
+      return <Redirect to={{pathname:'/rentals'}}/>
     }
 
     return (

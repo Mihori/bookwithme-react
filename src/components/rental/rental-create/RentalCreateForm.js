@@ -76,7 +76,7 @@ const RentalCreateForm = props => {
       <button className='btn btn-bwm btn-form' type="submit" disabled={!valid || pristine || submitting}>
         Create Rental
       </button>
-      {/* <ResponseError errors={errors} /> */}
+      <ResponseError errors={errors} />
     </form>
   )
 }
