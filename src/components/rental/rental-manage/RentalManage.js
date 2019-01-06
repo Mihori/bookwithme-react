@@ -2,6 +2,7 @@ import React from 'react';
 import * as actions from 'actions';
 import { Link } from 'react-router-dom';
 import { RentalManageCard } from './RentalManageCard';
+import { RentalManageModal } from './RentalManageModal';
 
 export class RentalManage extends React.Component {
 
@@ -25,7 +26,8 @@ export class RentalManage extends React.Component {
 
   renderRentalCards(rentals) {
     return rentals.map((rental, index) =>
-     <RentalManageCard key={index}
+     <RentalManageCard modal={<RentalManageModal bookings={rental.bookings}/>}
+                       key={index}
                        rental={rental}
                        rentalIndex={index} />);
   }
