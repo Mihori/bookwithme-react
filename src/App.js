@@ -11,7 +11,7 @@ import { RentalCreate } from './components/rental/rental-create/RentalCreate';
 import Login from 'components/login/Login';
 import { Register } from 'components/register/Register';
 import { RentalManage } from './components/rental/rental-manage/RentalManage';
-import { BookingManage } from './components/booking/booking-manage/BookingManage';
+import BookingManage from './components/booking/booking-manage/BookingManage';
 
 import { ProtectedRoute } from './shared/auth/ProtectedRoute';
 import { LoggedInRoute } from './shared/auth/LoggedInRoute';
