@@ -112,6 +112,15 @@ export const fetchUserBookings = () => {
   }
 }
 
+// USER RENTALS ACTIONS ---------------------------
+
+export const getUserRentals = () => {
+  return axiosInstance.get('/rentals/manage').then(
+    res => res.data,
+    err => Promise.reject(err.response.data.errors)
+  )
+}
+
 // AUTH ACTIONS
 
 export const register = (userdata) => {
