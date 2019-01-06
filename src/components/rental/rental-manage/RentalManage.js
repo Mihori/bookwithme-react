@@ -22,8 +22,14 @@ export class RentalManage extends React.Component {
   }
 
   render() {
+    const { userRentals } = this.state;
+
     return (
-      <p>test</p>
+      <div>
+        {
+          userRentals.map((rental, index) => <p> {rental.title} </p>)
+        }
+      </div>
     )
   }
 }
