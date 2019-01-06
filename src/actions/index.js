@@ -101,6 +101,16 @@ const fetchUserBookingsFail = (errors) => {
   }
 }
 
+export const fetchUserBookings = () => {
+  return dispatch => {
+    dispatch(fetchUserBookingsInit());
+
+    axiosInstance.get('/bookings/manage')
+      .then(res => res.data )
+      .then(userBookings => dispatch(fetchUserBookingsSuccess(userBookings)))
+      .catch(({response}) => dispatch(fetchUserBookingsFail(response.data.errors)))
+  }
+}
 
 // AUTH ACTIONS
 
