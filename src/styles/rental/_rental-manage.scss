@@ -26,6 +26,12 @@
       color: $main-color !important;
     }
   }
+
+  .btn-danger, .btn-success {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
   .btn-bwm {
     margin-right: 10px;
   }
