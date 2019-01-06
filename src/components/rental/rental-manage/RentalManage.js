@@ -3,6 +3,7 @@ import * as actions from 'actions';
 import { Link } from 'react-router-dom';
 import { RentalManageCard } from './RentalManageCard';
 import { RentalManageModal } from './RentalManageModal';
+import { ToastContainer, toast } from 'react-toastify';
 
 export class RentalManage extends React.Component {
 
@@ -14,6 +15,8 @@ export class RentalManage extends React.Component {
       errors: [],
       isFetching: false
     }
+
+    this.deleteRental = this.deleteRental.bind(this);
   }
 
   componentWillMount() {
@@ -29,7 +32,21 @@ export class RentalManage extends React.Component {
      <RentalManageCard modal={<RentalManageModal bookings={rental.bookings}/>}
                        key={index}
                        rental={rental}
-                       rentalIndex={index} />);
+                       rentalIndex={index}
+                       deleteRentalCb={this.deleteRental} />);
+  }
+
+  deleteRental(rentalId, rentalIndex) {
+    actions.deleteRental(rentalId).then(
+      () => this.deleteRentalFromList(rentalIndex),
+      errors => toast.error(errors[0].detail))
+  }
+
+  deleteRentalFromList(rentalIndex) {
+    const userRentals = this.state.userRentals.slice();
+    userRentals.splice(rentalIndex, 1);
+
+    this.setState({userRentals});
   }
 
   render() {
@@ -37,6 +54,7 @@ export class RentalManage extends React.Component {
 
     return (
       <section id='userRentals'>
+      <ToastContainer />
         <h1 className='page-title'>My Rentals</h1>
         <div className='row'>
         {this.renderRentalCards(userRentals)}
